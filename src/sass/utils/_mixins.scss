@@ -1,0 +1,61 @@
+@mixin clip-right($deg: 2%) {
+  @if (unit($deg) == '%' and $deg >= 0 and $deg <= 100) {
+    clip-path: polygon(0% 0%, 100% #{$deg}, 100% 100%, 0% #{100% - $deg});
+  } @else {
+    @error 'must be a percent 0 - 100';
+  }
+}
+
+@mixin clip-left($deg: 2%) {
+  @if (unit($deg) == '%' and $deg >= 0 and $deg <= 100) {
+    clip-path: polygon(0% #{$deg}, 100% 0%, 100% #{100 - $deg}, 0% 100%);
+  } @else {
+    @error 'must be a percent 0 - 100';
+  }
+}
+
+// * rad 👍 * //
+@mixin mq($value, $range: min) {
+  @if ((type-of($value) != number) and not(map-has-key($breakpoints, $value))) {
+    @error #{$value} is an invalid media query value - should be a key from $breakpoints or unit of measurement;
+  } @else if not($range == min or max) {
+    @error "$range must be 'min' or 'max', you put #{$range}";
+  } @else if (type-of($value) == number) {
+    @media only screen and (#{$range}-width: $value) {
+      @content;
+    }
+  } @else {
+    @media only screen and (#{$range}-width: map-get($breakpoints, $value)) {
+      @content;
+    }
+  }
+}
+
+@mixin line-break(
+  $margin: $spacer * 0.5 0,
+  // currentColor == current text color
+    $color: currentColor,
+  $height: 2px,
+  $width: 100%
+) {
+  &::after {
+    content: '';
+    display: block;
+    margin: $margin;
+    background: $color;
+    height: $height;
+    width: $width;
+    @content;
+  }
+}
+
+@mixin backGrad($url: '') {
+  background: linear-gradient(-45deg, rgba $primary, 0.9, rgba $primary, 0.9),
+    url($url);
+  background-size: contain;
+  background-position: center, center;
+}
+
+@mixin grid-span($number, $direction: row) {
+  grid-#{$direction}: span $number;
+}

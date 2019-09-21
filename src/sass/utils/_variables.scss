@@ -1,0 +1,26 @@
+// palette
+$primary: #540d6e;
+$secondary: #ee4266;
+$accent: #ffd23f;
+$highlight: #ffd23f;
+$base-font-color: #1f271b;
+$background: #f3fcf0;
+
+// greys
+$grey-0: darken(white, 5%);
+$grey-1: darken(white, 15%);
+$grey-2: darken(white, 25%);
+$grey-3: darken(white, 35%);
+$grey-4: darken(white, 50%);
+$grey-5: darken(white, 80%);
+
+$breakpoints: (
+  xs: 349px,
+  sm: 499px,
+  md: 699px,
+  lg: 999px,
+  xl: 1199px,
+  xxl: 1499px,
+);
+
+$spacer: 1rem;

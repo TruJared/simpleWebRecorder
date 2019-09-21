@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700');
+
+$base-font-family: 'Montserrat', sans-serif;
+
+// font-weight
+$fw-1: 300;
+$fw-2: 400;
+$fw-3: 700;
+
+// font-sizes
+$base-font-size: 1.6rem;
+
+// * code starts here * //
+
+// set html to 10px to create base 10
+html {
+  font-size: 10px;
+}
+
+body {
+  font-family: $base-font-family;
+  font-size: $base-font-size;
+  color: $base-font-color;
+  line-height: 1.15;
+  letter-spacing: 0.04em;
+}
+
+h1 h2,
+h3,
+h4,
+h5 {
+  font-family: $base-font-family;
+}

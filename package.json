@@ -1,0 +1,24 @@
+{
+  "name": "boilerplate",
+  "version": "1.0.0",
+  "main": "index.html",
+  "scripts": {
+    "build": "rm -rf dist/ && parcel build src/views/index.pug --public-url ./",
+    "build-no-public": "rm -rf dist/ && parcel build src/views/index.pug",
+    "nuke": "rm node_modules/ -rf package-lock.json && npm install",
+    "start": "rm -rf dist/ && parcel ./src/views/index.pug --open"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^9.6.1",
+    "eslint": "^6.4.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "parcel-bundler": "^1.12.0",
+    "pug": "^2.0.4",
+    "sass": "^1.22.12"
+  },
+  "description": ""
+}
