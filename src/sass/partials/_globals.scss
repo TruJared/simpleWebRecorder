@@ -47,7 +47,12 @@ a:visited {
 }
 
 a.download {
-  color: $button-font-color;
+  color: $primary;
+  text-shadow: 0 0 5px rgba(white, 0.2);
+
+  &:hover {
+    color: $secondary;
+  }
 }
 
 .button {
