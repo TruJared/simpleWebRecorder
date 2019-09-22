@@ -10,15 +10,20 @@ append content
           button#start.button.button--start Start
           button(disabled)#stop.button.button--stop Stop
           button(disabled)#pause.button.button--pause Pause
+        .nav__container--recording
           a#download.download.is-hidden Download
+          p#playback Recording <span id="off-on"></span>
+      .nav__container
         .nav__container--timer
-          p#playback numbers
+          h2#timer.timer 0:00
+
     section
       .content-wrapper
         .main-content
           .main-content--video-box.is-hidden
             video(autoplay="true" id="videoPlayer" class="videoPlayer"
-            controls)
+            data-recording=false
+            )
   footer
     .footer
       span &copy
