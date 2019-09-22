@@ -1,7 +1,14 @@
 import { $, $$ } from './lib/bling';
 
-// ! delete me ! //
-$('.test').on(
-  'click',
-  () => ($('.test').style.color = $('.test').style.color !== 'red' ? 'red' : 'blue'),
-);
+const video = document.querySelector('#videoPlayer');
+
+if (navigator.mediaDevices.getUserMedia) {
+  navigator.mediaDevices
+    .getUserMedia({ video: true })
+    .then(stream => {
+      video.srcObject = stream;
+    })
+    .catch(e => {
+      console.log(`Something went wrong! ${e}`);
+    });
+}
