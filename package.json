@@ -20,5 +20,8 @@
     "pug": "^2.0.4",
     "sass": "^1.22.12"
   },
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "recordrtc": "^5.5.8"
+  }
 }

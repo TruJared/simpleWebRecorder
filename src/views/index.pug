@@ -11,12 +11,13 @@ append content
           button#stop.button.button--stop Stop
           button#pause.button.button--pause Pause
         .nav__container--timer
-          p 45m
+          p#playback
     section
       .content-wrapper
         .main-content
-          .main-content--video-box
-            video(autoplay="true" id="videoPlayer" class="videoPlayer")
+          .main-content--video-box.is-hidden
+            video(autoplay="true" id="videoPlayer" class="videoPlayer"
+            controls)
   footer
     .footer
       span &copy
