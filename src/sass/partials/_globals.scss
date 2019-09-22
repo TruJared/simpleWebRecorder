@@ -16,10 +16,17 @@ body {
   flex-direction: column;
   display: flex;
 }
+
 a,
 a:visited {
   color: $base-font-color;
+  text-decoration: none;
 }
+
+a.download {
+  color: $button-font-color;
+}
+
 .button {
   width: 125px;
   height: 45px;
@@ -38,6 +45,11 @@ a:visited {
 
   &:active {
     box-shadow: none;
+  }
+
+  &[disabled] {
+    background-color: $grey-3;
+    opacity: 0.5;
   }
 }
 
@@ -58,4 +70,9 @@ a:visited {
       color: $primary;
     }
   }
+}
+
+.is-hidden {
+  display: none;
+  width: 0;
 }

@@ -8,10 +8,11 @@ append content
       .nav__container
         .nav__container--control-buttons
           button#start.button.button--start Start
-          button#stop.button.button--stop Stop
-          button#pause.button.button--pause Pause
+          button(disabled)#stop.button.button--stop Stop
+          button(disabled)#pause.button.button--pause Pause
+          a#download.download.is-hidden Download
         .nav__container--timer
-          p#playback
+          p#playback numbers
     section
       .content-wrapper
         .main-content
@@ -23,4 +24,5 @@ append content
       span &copy
         | <script>document.write(new Date().getFullYear())</script>
         | ❤️
-        | <a href="mailto:jared@jaredmakes.com"> Jared Makes </a>
+        | <a href="https://jaredmakes.website"> Jared Makes </a>
+        | ❤️

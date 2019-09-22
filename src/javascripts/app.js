@@ -1,51 +1,70 @@
-import { $, $$ } from './lib/bling';
+// bling.js -> https://gist.github.com/TruJared/f674b493d6c312f3a4385bc25701ad88
+import { $ } from './lib/bling';
 
+// just import the whole libraries because why not...
 const RecordRTC = require('recordrtc');
+const shortid = require('shortid');
 
+// sets a var for recorder which works with the RecordRTC lib
 let recorder;
 
-const video = document.querySelector('#videoPlayer');
-
-function captureCamera(callback) {
+const captureCamera = callback => {
   navigator.mediaDevices
     .getUserMedia({ audio: true, video: true })
     .then(camera => {
       callback(camera);
-    })
-    .catch(error => {
-      console.error(`ERROR ${error}`);
     });
-}
+};
 
-function stopRecordingCallback() {
-  video.srcObject = null;
-  video.src = video.srcObject;
-  video.muted = false;
-  video.volume = 1;
-  video.src = URL.createObjectURL(recorder.getBlob());
+const stopRecording = () => {
+  $('#videoPlayer').srcObject = null;
+  $('#videoPlayer').src = null;
+  $('#videoPlayer').muted = false;
+  $('#videoPlayer').volume = 1;
 
+  // auto playback
+  $('#videoPlayer').src = URL.createObjectURL(recorder.getBlob());
+
+  // name file with a hash and show link
+  $('#download').href = URL.createObjectURL(recorder.getBlob());
+  $('#download').download = `${shortid.generate()}.webm`;
+
+  // update ui
   recorder.camera.stop();
   recorder.destroy();
   recorder = null;
-}
+  $('#download').classList.remove('is-hidden');
+  $('#playback').classList.add('is-hidden');
+  $('#start').disabled = false;
+  $('#pause').disabled = true;
+  $('#stop').disabled = true;
+};
 
-document.getElementById('start').onclick = function () {
-  this.disabled = true;
+// this will start the process
+$('#start').on('click', () => {
+  // reset ui
+  $('#start').disabled = true;
+  $('#stop').disabled = false;
+  $('#pause').disabled = false;
+  $('.main-content--video-box').classList.remove('is-hidden');
+  $('#download').classList.add('is-hidden');
+  $('#playback').classList.remove('is-hidden');
+
+  // let's make a movie!
   captureCamera(camera => {
-    video.muted = true;
-    video.volume = 0;
-    video.srcObject = camera;
+    $('#videoPlayer').muted = true;
+    $('#videoPlayer').volume = 0;
+    $('#videoPlayer').srcObject = camera;
     recorder = RecordRTC(camera, {
       type: 'video',
     });
     recorder.startRecording();
     // release camera on stopRecording
     recorder.camera = camera;
-    document.getElementById('btn-stop-recording').disabled = false;
   });
-};
+});
 
-document.getElementById('stop').onclick = function () {
-  this.disabled = true;
-  recorder.stopRecording(stopRecordingCallback);
-};
+// this is needed to pass the stopRecording function to recorder
+$('#stop').on('click', () => {
+  recorder.stopRecording(stopRecording);
+});
