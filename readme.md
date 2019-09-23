@@ -28,6 +28,8 @@ Chrome will only support browser based web recording over `https` or `localhost`
 
 Does not work on mobile. 🙁
 
+Video does not persist throughout sessions.
+
 ---
 
 Jared T. - 🐯
